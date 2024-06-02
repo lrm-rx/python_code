@@ -1,4 +1,4 @@
 # conding:utf-8
 
 import os
-print(os.getcwd())
+print("123:", os.getcwd())
