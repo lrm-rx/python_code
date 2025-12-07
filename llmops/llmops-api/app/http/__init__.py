@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Time   : 2025/12/07 0007 17:01
+@Time   : 2025/12/07 0007 19:02
 @Author : 756131502@qq.com
 @File   : __init__.py.py
 """
-
-from .router import Router
-
-__all__ = ["Router"]
