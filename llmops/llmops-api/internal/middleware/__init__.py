@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@Time   : 2025/12/05 0005 23:06
+@Time   : 2025/12/07 0007 17:00
 @Author : 756131502@qq.com
-@File   : app.py
+@File   : __init__.py.py
 """
-
-print("hello word!")
