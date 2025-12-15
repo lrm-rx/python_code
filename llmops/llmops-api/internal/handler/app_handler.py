@@ -11,6 +11,7 @@ from flask import request
 from openai import OpenAI
 
 from internal.schema.app_schema import CompletionReq
+from pkg.response import success_json, validate_error_json
 
 
 class AppHandler:
@@ -22,8 +23,8 @@ class AppHandler:
         query = request.json.get("query")
         req = CompletionReq()
         if not req.validate():
-            return req.errors
-        
+            return validate_error_json(req.errors)
+
         # 2. 构建openai客户端, 并发起请求
         client = OpenAI(
             api_key=os.getenv("OPENAI_API_KEY"),
@@ -40,7 +41,10 @@ class AppHandler:
             temperature=0.6,
         )
         content = completion.choices[0].message.content
-        return content
+
+        # resp = Response(code=HttpCode.SUCCESS, message="", data={"content": content})
+
+        return success_json({"content": content})
 
     def ping(self):
         return {"ping": "pink"}
