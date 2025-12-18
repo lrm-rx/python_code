@@ -25,7 +25,8 @@ class CustomException(Exception):
 
 class FailException(CustomException):
     """通用失败异常"""
-    pass
+    # pass 或者 使用...   意思是什么也不做, 目的是不报错
+    ...
 
 
 class NotFoundException(CustomException):
