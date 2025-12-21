@@ -5,3 +5,9 @@
 @Author : 756131502@qq.com
 @File   : __init__.py.py
 """
+
+from .app import App
+
+__all__ = [
+    "App",
+]
