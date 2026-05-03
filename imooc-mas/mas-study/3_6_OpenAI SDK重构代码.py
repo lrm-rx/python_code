@@ -12,10 +12,7 @@ from openai import OpenAI
 
 dotenv.load_dotenv()
 
-client = OpenAI(
-    base_url="https://api.deepseek.com/v1",
-    api_key=os.getenv("DEEPSEEK_API_KEY"),
-)
+client = OpenAI()
 
 response = client.chat.completions.create(
     model="deepseek-v4-pro",
