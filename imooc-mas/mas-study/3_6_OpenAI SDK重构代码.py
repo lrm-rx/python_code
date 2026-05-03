@@ -5,7 +5,6 @@
 @Author : 756131502@qq.com
 @File   : 3_5_Kimi多模态API测试.py
 """
-import os
 
 import dotenv
 from openai import OpenAI
