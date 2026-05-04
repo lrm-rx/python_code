@@ -12,6 +12,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.infrastructure.logging import setup_logging
+from app.infrastructure.storage.redis import get_redis
 from app.interfaces.endpoints.routes import router
 from app.interfaces.errors.exception_handlers import register_exception_handlers
 from core.config import get_settings
@@ -39,10 +40,16 @@ async def lifespan(app: FastAPI):
     # 1.日志打印代码已经开始执行了
     logger.info("Eunoia正在初始化")
 
+    # 2.初始化Redis缓存客户端
+    redis = get_redis()
+    await redis.init()
+
     try:
-        # lifespan分界点
+        # 3.lifespan分界点
         yield
     finally:
+        # 4.应用关闭时执行
+        await redis.shutdown()
         logger.info("Eunoia应用关闭成功")
 
 
