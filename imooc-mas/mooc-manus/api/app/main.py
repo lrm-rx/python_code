@@ -12,6 +12,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.infrastructure.logging import setup_logging
+from app.infrastructure.storage.postgres import get_postgres
 from app.infrastructure.storage.redis import get_redis
 from app.interfaces.endpoints.routes import router
 from app.interfaces.errors.exception_handlers import register_exception_handlers
@@ -44,12 +45,17 @@ async def lifespan(app: FastAPI):
     redis = get_redis()
     await redis.init()
 
+    # 3.初始化Postgres客户端
+    postgres = get_postgres()
+    await postgres.init()
+
     try:
         # 3.lifespan分界点
         yield
     finally:
         # 4.应用关闭时执行
         await redis.shutdown()
+        await postgres.shutdown()
         logger.info("Eunoia应用关闭成功")
 
 
