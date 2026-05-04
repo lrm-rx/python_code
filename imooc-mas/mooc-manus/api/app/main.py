@@ -12,6 +12,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.infrastructure.logging import setup_logging
+from app.infrastructure.storage.cos import get_cos
 from app.infrastructure.storage.postgres import get_postgres
 from app.infrastructure.storage.redis import get_redis
 from app.interfaces.endpoints.routes import router
@@ -41,21 +42,19 @@ async def lifespan(app: FastAPI):
     # 1.日志打印代码已经开始执行了
     logger.info("Eunoia正在初始化")
 
-    # 2.初始化Redis缓存客户端
-    redis = get_redis()
-    await redis.init()
-
-    # 3.初始化Postgres客户端
-    postgres = get_postgres()
-    await postgres.init()
+    # 2.初始化Redis/Postgres/腾讯云Cos对象存储客户端
+    await get_redis().init()
+    await get_postgres().init()
+    await get_cos().init()
 
     try:
         # 3.lifespan分界点
         yield
     finally:
         # 4.应用关闭时执行
-        await redis.shutdown()
-        await postgres.shutdown()
+        await get_redis().shutdown()
+        await get_postgres().shutdown()
+        await get_cos().shutdown()
         logger.info("Eunoia应用关闭成功")
 
 
