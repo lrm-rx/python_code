@@ -40,7 +40,7 @@ class ReActAgent:
         # 1.构建stdio本地连接参数信息
         server_params = StdioServerParameters(
             command="uv",
-            args=["--directory", "D:\\Code\\imooc-mas\\mas-study", "run", "6_6_mcp-server-demo.py"],
+            args=["--directory", "E:\\python_code\\imooc-mas\\mas-study", "run", "6_6_mcp-server-demo.py"],
             env=None,
         )
 

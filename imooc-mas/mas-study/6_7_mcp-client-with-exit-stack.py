@@ -18,7 +18,7 @@ async def main() -> None:
         command="uv",
         args=[
             "--directory",
-            "D:\\Code\\imooc-mas\\mas-study",
+            "E:\\python_code\\imooc-mas\\mas-study",
             "run",
             "6_6_mcp-server-demo.py",
         ],
