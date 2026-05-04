@@ -50,7 +50,7 @@ class RedisClient:
         """关闭Redis时执行的操作"""
         # 1.客户端存在则关闭客户端并提示
         if self._client is not None:
-            await self._client.close()
+            await self._client.aclose()
             self._client = None
             logger.info("Redis客户端成功关闭")
         # 2.清除缓存
