@@ -7,7 +7,7 @@
 """
 from fastapi import APIRouter
 
-from . import status_routers
+from . import status_routers, app_config_routes
 
 
 def create_api_routes() -> APIRouter:
@@ -17,6 +17,7 @@ def create_api_routes() -> APIRouter:
 
     # 2.将各个模块添加到api_router中
     api_router.include_router(status_routers.router)
+    api_router.include_router(app_config_routes.router)
 
     # 3. 返回api_router实例
     return api_router
