@@ -76,7 +76,7 @@ async def run_code(language: str, code: str, timeout: int = 30) -> str:
     except subprocess.TimeoutExpired:
         return f"执行超时(>{timeout}s)"
     except FileNotFoundError as e:
-        return f"命令未找到活路径错误: {str(e)}"
+        return f"命令未找到或路径错误: {str(e)}"
     except Exception as e:
         return f"执行异常: {str(e)}"
     finally:
