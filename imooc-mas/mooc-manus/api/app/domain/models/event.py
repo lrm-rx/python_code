@@ -12,7 +12,9 @@ from typing import Literal, List, Union, Optional, Any, Dict, Annotated
 
 from pydantic import BaseModel, Field
 
+from .file import File
 from .plan import Plan, Step
+from .tool_result import ToolResult
 
 
 class PlanEventStatus(str, Enum):
@@ -67,8 +69,7 @@ class MessageEvent(BaseEvent):
     type: Literal["message"] = "message"
     role: Literal["user", "assistant"] = "assistant"  # 消息角色
     message: str = ""  # 消息本身
-    # todo:附件文件结构等完善
-    attachments: List[Any] = Field(default_factory=list)  # 附件列表信息
+    attachments: List[File] = Field(default_factory=list)  # 附件列表信息
 
 
 class BrowserToolContent(BaseModel):
@@ -119,7 +120,7 @@ class ToolEvent(BaseEvent):
     tool_content: Optional[ToolContent] = None  # 工具扩展内容
     function_name: str  # LLM调用函数/工具名字
     function_args: Dict[str, Any]  # LLM生成的工具调用参数
-    function_result: Optional[Any] = None  # 工具调用结果
+    function_result: Optional[ToolResult] = None  # 工具调用结果
     status: ToolEventStatus = ToolEventStatus.CALLING  # 工具事件状态
 
 
