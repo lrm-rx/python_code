@@ -8,3 +8,26 @@ agent_config:
   max_iterations: 100
   max_retries: 3
   max_search_results: 10
+mcp_config:
+  mcpServers:
+    amap-maps-streamableHTTP:
+      transport: streamable_http
+      enabled: true
+      description: null
+      env: null
+      command: null
+      args: null
+      url: https://mcp.amap.com/mcp?key=00b05640cc55c0ba2b7f85e0b3f2e6e7
+      headers: null
+    jina-mcp-server:
+      transport: streamable_http
+      enabled: true
+      description: null
+      env: null
+      command: null
+      args: null
+      url: https://mcp.jina.ai/v1
+      headers:
+        Authorization: Bearer xxxxx
+a2a_config:
+  a2a_servers: [ ]
