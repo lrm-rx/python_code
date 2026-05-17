@@ -81,6 +81,7 @@ class AppConfig(BaseModel):
     """应用配置信息, 包含Agent配置, LLM提供商, A2A网络, MCP服务配置等"""
     llm_config: LLMConfig  # 语言模型配置
     agent_config: AgentConfig  # Agent通用配置
+    mcp_config: MCPConfig  # MCP服务配置
 
     # Pydantic配置, 允许传递额外的字段初始化
     model_config = ConfigDict(extra="allow")
