@@ -1,0 +1,11 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+@Time   : 2026/06/06 0006 20:13
+@Author : 756131502@qq.com
+@File   : shell.py
+"""
+from fastapi import APIRouter
+
+# Shell模块路由
+router = APIRouter(prefix="/shell", tags=["Shell模块"])
